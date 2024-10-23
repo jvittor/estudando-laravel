@@ -19,3 +19,8 @@ Route::any("user/register", function () {
     }
     return response()->json(["error" => "error", "message" => "Failed to create user"]);
 });
+
+
+Route::prefix("product")->middleware("auth:sanctum")->middleware("auth:sanctum")->group(function () {
+    //Route
+});
