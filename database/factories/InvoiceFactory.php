@@ -16,8 +16,12 @@ class InvoiceFactory extends Factory
      */
     public function definition(): array
     {
+        $paid = $this->faker->boolean();
         return [
-            //
+            'type' => $this->faker->randomElement(['B', 'C', 'P']),
+            'paid' => $paid,
+            'value' => $this->faker->numberBetween(100, 1000),
+            'payment_data' => $paid ? $this->faker->randomElement([$this->faker->dateTimeThisMonth()]): NULL
         ];
     }
 }
