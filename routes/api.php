@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CRUDManager;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -22,5 +23,5 @@ Route::any("user/register", function () {
 
 
 Route::prefix("product")->middleware("auth:sanctum")->middleware("auth:sanctum")->group(function () {
-    //Route
+    Route::post("create", [CRUDManager::class, "create"]);
 });
