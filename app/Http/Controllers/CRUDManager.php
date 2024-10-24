@@ -32,4 +32,9 @@ class CRUDManager extends Controller
         }
         
     }
+
+    function read(){
+        $products = Products::all();
+        return response()->json(['status' => 'success', 'data' => $products]);
+    }
 };

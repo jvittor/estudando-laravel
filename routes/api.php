@@ -24,4 +24,5 @@ Route::any("user/register", function () {
 
 Route::prefix("product")->middleware("auth:sanctum")->middleware("auth:sanctum")->group(function () {
     Route::post("create", [CRUDManager::class, "create"]);
+    Route::post("read", [CRUDManager::class, "read"]);
 });
