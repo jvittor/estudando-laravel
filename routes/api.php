@@ -1,6 +1,9 @@
 <?php
 
-use App\Http\Controllers\CRUDManager;
+use App\Http\Controllers\CreateProductController;
+use App\Http\Controllers\ReadProductController;
+use App\Http\Controllers\UpdateProductController;
+use App\Http\Controllers\DeleteProductController;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -8,6 +11,8 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 
+
+//register
 Route::post("user/register", function (Request $request) {
     $validator = Validator::make($request->all(), [
         'name' => 'required|string|max:255',
@@ -37,7 +42,7 @@ Route::post("user/register", function (Request $request) {
     return response()->json(["error" => "error", "message" => "Failed to create user"]);
 });
 
-
+//login
 Route::post("user/login", function (Request $request) {
     $request->validate([
         'email' => 'required|email',
@@ -66,9 +71,12 @@ Route::post("user/login", function (Request $request) {
     ]);
 });
 
+//crud dos produtos
 Route::prefix("product")->middleware("auth:sanctum")->middleware("auth:sanctum")->group(function () {
-    Route::post("create", [CRUDManager::class, "create"]);
-    Route::post("read", [CRUDManager::class, "read"]);
-    Route::post("update/{id}", [CRUDManager::class, "update"]);
-    Route::post("delete/{id}", [CRUDManager::class, "delete"]);
+    Route::post("create", [CreateProductController::class, "create"]);
+    Route::get("read", [ReadProductController::class, "read"]);
+    Route::put("update/{id}", [UpdateProductController::class, "update"]);
+    Route::delete("delete/{id}", [DeleteProductController::class, "delete"]);
 });
+
+//só colocar tudo post e mudar para use App\Http\Controllers\CRUDManager
