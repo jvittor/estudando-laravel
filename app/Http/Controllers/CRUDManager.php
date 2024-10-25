@@ -11,8 +11,7 @@ use Illuminate\Support\Facades\Auth;
 
 class CRUDManager extends Controller
 {
-    function create(Request $request) 
-    {
+    function create(Request $request) {
         $validation = Validator::make($request->all(), [
             'name' => 'required',
             'description' => 'required|string',
@@ -60,5 +59,11 @@ class CRUDManager extends Controller
             return response()->json(['status' => 'success', 'data' => $product,
             'message' => 'Product updated successfully']);
         }
+    }
+
+    function delete($id){
+        if (Products::where('id', $id)->where('user_id', Auth::id())->delete()) {
+            return response()->json(['status' => 'success', 'message' => 'Product deleted successfully']);
+        };
     }
 };
