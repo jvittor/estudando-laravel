@@ -1,9 +1,9 @@
 <?php
 
-use App\Http\Controllers\CreateProductController;
-use App\Http\Controllers\ReadProductController;
-use App\Http\Controllers\UpdateProductController;
-use App\Http\Controllers\DeleteProductController;
+use App\Http\Controllers\Product\CreateProductController;
+use App\Http\Controllers\Product\ReadProductController;
+use App\Http\Controllers\Product\UpdateProductController;
+use App\Http\Controllers\Product\DeleteProductController;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
